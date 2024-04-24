@@ -1,8 +1,16 @@
 const { Assessment } = require(`../database/models`);
 
 exports.submit = async (assessment) => {
-  // use the sequelize model Assessments from packages/api/src/database/models to save
-  // the assessment data in the PostgreSQL database
+  try {
+    // use the sequelize model Assessments from packages/api/src/database/models to save
+    // the assessment data in the PostgreSQL database
+    const result = await Assessment.create(assessment);
+    return result;
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.error(`Error submitting assessment:`, error);
+    throw error;
+  }
 };
 
 exports.getList = () => {
