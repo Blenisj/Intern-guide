@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useTable } from 'react-table';
 import { AssessmentService } from '../../services/AssessmentService';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export const AssessmentList = () => {
   const [ assessments, setAssessments ] = useState([]);
@@ -52,27 +53,29 @@ export const AssessmentList = () => {
     rows,
   } = useTable({ columns, data: assessments });
   return (
-    <div>
-      <table {...getTableProps()} style={{ margin: `1em 0`, width: `100%` }}>
-        <thead>
-          {headerGroups.map(headerGroup =>
-            <tr {...headerGroup.getHeaderGroupProps()}>
-              {headerGroup.headers.map(column =>
-                <th {...column.getHeaderProps()}>{column.render(`Header`)}</th>)}
-            </tr>)}
-        </thead>
-        <tbody {...getTableBodyProps()}>
-          {rows.map(row => {
-            prepareRow(row);
-            return (
-              <tr {...row.getRowProps()}>
-                {row.cells.map(cell =>
-                  <td {...cell.getCellProps()}>{cell.render(`Cell`)}</td>)}
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
+    <div className="container">
+      <div className="table-responsive">
+        <table {...getTableProps()} className="table table-striped table-hover table-bordered">
+          <thead>
+            {headerGroups.map(headerGroup =>
+              <tr {...headerGroup.getHeaderGroupProps()}>
+                {headerGroup.headers.map(column =>
+                  <th {...column.getHeaderProps()}>{column.render(`Header`)}</th>)}
+              </tr>)}
+          </thead>
+          <tbody {...getTableBodyProps()}>
+            {rows.map(row => {
+              prepareRow(row);
+              return (
+                <tr {...row.getRowProps()}>
+                  {row.cells.map(cell =>
+                    <td {...cell.getCellProps()}>{cell.render(`Cell`)}</td>)}
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };
