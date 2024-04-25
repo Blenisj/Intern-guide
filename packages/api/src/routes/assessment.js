@@ -29,7 +29,7 @@ assessmentRouter.post(
 );
 
 assessmentRouter.get(
-  `/`,
+  `/list`,
   async (req, res, next) => {
     try {
       // verify that your data is making it here to the API by using console.log();

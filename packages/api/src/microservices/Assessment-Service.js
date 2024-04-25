@@ -19,10 +19,14 @@ exports.submit = async (assessment) => {
   }
 };
 
-exports.getList = () => {
-  // use the sequelize model Assessments from packages/api/src/database/models to fetch
-  // the assessment data from the PostgreSQL database
-  const assessments = [];
-
-  return assessments;
+exports.getList = async () => {
+  try {
+    // Use the Sequelize model to fetch the assessment data from the database
+    const assessments = await Assessment.findAll();
+    return assessments;
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.error(`Error fetching assessments:`, error);
+    return [];
+  }
 };
