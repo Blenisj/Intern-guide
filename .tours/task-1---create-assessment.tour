@@ -4,7 +4,7 @@
   "steps": [
     {
       "file": "packages/client/package.json",
-      "description": "# Start Application\n\nREMINDER: In order to run the application, you will have to run some commands.\n_______________________________________________\n\nCOMMANDS:\n\nOpen a terminal within vscode and type these commands into that terminal and hit \"enter\" or \"return\":\n\n- Navigate into the OCAT directory (folder) with the command \"`cd packages/client/`\"\n- `npm install`\n- `npm start`\n- Open the browser and go to http://localhost:3000 to verify that your application is running",
+      "description": "# Start Application\n\nREMINDER: In order to run the application, you will have to run some commands.\n_______________________________________________\n\nCOMMANDS:\n\nOpen a terminal within vscode and type these commands into that terminal and hit \"enter\" or \"return\":\n\n- Navigate into the OCAT directory (folder) with the command \"`cd packages/client/`\"\n- `npm install`\n- `npm start`\n- Open the browser and go to http://localhost:4000 to verify that your application is running",
       "line": 6
     },
     {

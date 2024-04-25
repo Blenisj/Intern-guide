@@ -4,6 +4,7 @@
   "description": "Cat Corrections API",
   "main": "index.js",
   "scripts": {
+    "dev": "nodemon",
     "start": "nodemon",
     "build": "tsc",
     "lint": "eslint src --ext .js,.ts",
