@@ -1,6 +1,5 @@
 const { AssessmentService } = require(`../microservices`);
 const { ResponseHandler } = require(`../utils`);
-
 const { Router } = require(`express`);
 
 const assessmentRouter = Router();
