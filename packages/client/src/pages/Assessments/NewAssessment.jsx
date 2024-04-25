@@ -30,7 +30,7 @@ export const NewAssessment = () => {
     } else {
       data.riskLevel = `High`;
     }
-    data.instrumentType = `Cat Behavioral Instrument`;
+    data.instrumentType = 1;
     const assessment = {
       catDateOfBirth: data.catDateOfBirth,
       catName: data.catName,

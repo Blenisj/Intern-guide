@@ -7,7 +7,7 @@ export class AssessmentService {
       // in a request to the express packages/api/src/routes/assessment.js
       // NOTE: the http.config file automatically adds /api to the front of your url
       console.log(assessment);
-      return Axios.post(`http://localhost:4000/api/assessment/submit`, assessment)
+      return Axios.post(`http://localhost:4000/api/assessment/submit`, { assessment })
         .then(response => response.data);
     }
     catch (err) {
