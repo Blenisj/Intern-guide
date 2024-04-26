@@ -14,6 +14,7 @@ export const NewAssessment = () => {
   } = useForm();
 
   const onSubmit = async (data) => {
+    // eslint-disable-next-line no-console
     console.log(data);
     const score = [
       `previousContact`,
@@ -24,9 +25,9 @@ export const NewAssessment = () => {
     ]
       .reduce((total, key) => total + Number(data[key]), 0);
     data.score = score;
-    if (score === 0) {
+    if (score <= 1) {
       data.riskLevel = `Low`;
-    } else if (score === 1 || score === 2) {
+    } else if (score === 2 || score === 3) {
       data.riskLevel = `Medium`;
     } else {
       data.riskLevel = `High`;

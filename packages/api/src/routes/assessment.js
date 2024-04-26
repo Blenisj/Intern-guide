@@ -49,4 +49,19 @@ assessmentRouter.get(
   },
 );
 
+assessmentRouter.delete(
+  `/:id`,
+  async (req, res) => {
+    try {
+      const { id } = req.params;
+      const result = await AssessmentService.delete(id);
+      res.json(result);
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error(`Failed to delete assessment:`, error);
+      res.status(500).send(`Server error`);
+    }
+  },
+);
+
 module.exports = { assessmentRouter };
