@@ -64,7 +64,9 @@ InferCreationAttributes<Assessment>
         type: DataTypes.DATE,
       },
       /* eslint-enable sort-keys */
-    }, {
+    },
+    {
+      paranoid: true,
       sequelize,
     });
 

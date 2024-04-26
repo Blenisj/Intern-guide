@@ -31,4 +31,13 @@ export class AssessmentService {
       return [];
     }
   }
+
+  static async delete(id) {
+    try {
+      const response = await Axios.delete(`http://localhost:4000/api/assessment/${id}`);
+      return response.data;
+    } catch (error) {
+      console.error(`Failed to delete assessment:`, error);
+    }
+  }
 }

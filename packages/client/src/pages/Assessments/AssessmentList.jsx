@@ -19,6 +19,17 @@ export const AssessmentList = () => {
     };
     fetchAssessments();
   }, []);
+  const deleteAssessment = async (id) => {
+    const response = await fetch(`/api/assessment/${id}`, {
+      method: `DELETE`,
+    });
+    if (response.ok) {
+      setAssessments((currentAssessments) =>
+        currentAssessments.filter((assessment) => String(assessment.id) !== String(id)));
+    } else {
+      console.error(`Failed to delete assessment`);
+    }
+  };
   const columns = React.useMemo(
     () => [
       {
@@ -41,7 +52,19 @@ export const AssessmentList = () => {
         Header: `Score`,
         accessor: `score`,
       },
-      // Add more columns as needed
+      {
+        Cell: ({ value }) => new Date(value).toLocaleString(),
+        Header: `Created At`,
+        accessor: `createdAt`,
+      },
+      {
+        Cell: ({ row: { original } }) =>
+          <button className="btn btn-danger" onClick={() => deleteAssessment(original.id)}>
+            Delete
+          </button>,
+        Header: `Edit/Delete`,
+        id: `Actions`,
+      },
     ],
     []
   );
