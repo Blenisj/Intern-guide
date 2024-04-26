@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useTable } from 'react-table';
+import { useFilters, useGlobalFilter, useSortBy, useTable } from 'react-table';
 import { AssessmentService } from '../../services/AssessmentService';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -13,6 +13,7 @@ export const AssessmentList = () => {
       if (Array.isArray(response)) {
         setAssessments(response);
       } else {
+        // eslint-disable-next-line no-console
         console.error(`Error: Expected an array but received`, response);
         setAssessments([]);
       }
@@ -27,6 +28,7 @@ export const AssessmentList = () => {
       setAssessments((currentAssessments) =>
         currentAssessments.filter((assessment) => String(assessment.id) !== String(id)));
     } else {
+      // eslint-disable-next-line no-console
       console.error(`Failed to delete assessment`);
     }
   };
@@ -74,16 +76,34 @@ export const AssessmentList = () => {
     headerGroups,
     prepareRow,
     rows,
-  } = useTable({ columns, data: assessments });
+    setGlobalFilter,
+    state,
+  } = useTable({ columns, data: assessments }, useFilters, useGlobalFilter, useSortBy);
+
+  const { globalFilter } = state;
+
   return (
     <div className="container">
+      <input
+        value={globalFilter || ``}
+        onChange={e => setGlobalFilter(e.target.value || undefined)}
+        placeholder={`Search all fields`}
+      />
       <div className="table-responsive">
         <table {...getTableProps()} className="table table-striped table-hover table-bordered">
           <thead>
             {headerGroups.map(headerGroup =>
               <tr {...headerGroup.getHeaderGroupProps()}>
                 {headerGroup.headers.map(column =>
-                  <th {...column.getHeaderProps()}>{column.render(`Header`)}</th>)}
+                  <th {...column.getHeaderProps(column.getSortByToggleProps())}>
+                    {column.render(`Header`)}
+                    <span style={{ color: column.isSorted ? column.isSortedDesc ? `black` : `grey` : `grey` }}>
+                      🔽
+                    </span>
+                    <span style={{ color: column.isSorted ? !column.isSortedDesc ? `black` : `grey` : `grey` }}>
+                      🔼
+                    </span>
+                  </th>)}
               </tr>)}
           </thead>
           <tbody {...getTableBodyProps()}>

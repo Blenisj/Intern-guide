@@ -14,6 +14,7 @@ export const NewAssessment = () => {
   } = useForm();
 
   const onSubmit = async (data) => {
+    // eslint-disable-next-line no-console
     console.log(data);
     const score = [
       `previousContact`,
